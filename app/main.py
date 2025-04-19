@@ -26,10 +26,10 @@ app.add_middleware(
 def on_startup():
     models.Base.metadata.create_all(bind=engine)
 
-@app.post("/register", response_model=schemas.UserOut)
+@app.post("/api/register", response_model=schemas.UserOut)
 def register(user: schemas.UserCreate, db=Depends(auth.get_db)):
     return auth.register_user(user, db)
 
-@app.post("/login", response_model=schemas.Token)
+@app.post("/api/login", response_model=schemas.Token)
 def login(user: schemas.UserLogin, db=Depends(auth.get_db)):
     return auth.login_user(user, db)
