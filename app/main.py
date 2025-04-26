@@ -8,14 +8,14 @@ import os
 
 load_dotenv()
 
-frontend_url = os.getenv("FRONTEND_URL")
+frontend_urls = os.getenv("FRONTEND_URL").split(",")
 
 app = FastAPI()
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url],
+    allow_origins=frontend_urls,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
